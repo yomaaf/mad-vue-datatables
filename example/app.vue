@@ -1,0 +1,51 @@
+<template>
+  <div
+    id="app"
+    class="col-12"
+  >
+    <!-- Using the MadVueDatatable component -->
+    <mad-vue-datatable
+      ref="table"
+      :action="true"
+      action-data="extn"
+      :fields="fields"
+      url="/json.txt"
+      @testing="doTesting"
+    >
+    <template
+    slot="custom"
+    >
+    <button
+    class="btn btn-success"
+    data-action="testing"
+    >
+    Test
+    </button>
+    </template>
+    </mad-vue-datatable>
+  </div>
+</template>
+
+<script>
+import MadVueDatatable from '../src'
+export default {
+  name: 'App',
+  components: { MadVueDatatable },
+  data() {
+    const vm = this
+    return {
+      fields: {
+        name: { label: 'Name', sortable: true, searchable: true, defaultOrder: 'desc' }
+      },
+    }
+  },
+  methods: {
+    doTesting(data){
+      console.log(data)
+    }
+  }
+}
+</script>
+
+<style scoped>
+</style>
