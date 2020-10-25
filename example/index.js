@@ -295,32 +295,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // this demonstrate with buttons and responsive master/details row
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -381,7 +355,7 @@ __webpack_require__.r(__webpack_exports__);
         buttons: [],
 
         /*eslint-disable */
-        dom: "Btr<'row madvue-footer'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'pl>>",
+        dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 
         /*eslint-enable */
         responsive: true,
@@ -2014,51 +1988,6 @@ var render = function() {
     "div",
     { staticClass: "row", staticStyle: { padding: "10px" } },
     [
-      _c("div", { staticClass: "col-12 col-md-9" }, [_vm._t("message")], 2),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12 col-md-3" }, [
-        _c(
-          "form",
-          {
-            staticClass: "form-inline d-flex mx-1 justify-content-end",
-            on: {
-              submit: function($event) {
-                $event.stopPropagation()
-                $event.preventDefault()
-                return _vm.doSearch($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.quickSearch,
-                    expression: "quickSearch"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "search", placeholder: "Quick search" },
-                domProps: { value: _vm.quickSearch },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.quickSearch = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
       _c(
         "mad-vue-datatable",
         _vm._g(
@@ -2090,20 +2019,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-append" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-outline-secondary", attrs: { type: "submit" } },
-        [_vm._v("\n            Search\n          ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

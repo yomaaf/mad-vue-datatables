@@ -3,32 +3,6 @@
   class="row"
   style="padding:10px"
   >
-    <div class="col-12 col-md-9">
-      <slot name="message" />
-    </div>
-    <div class="col-12 col-md-3">
-      <form
-        class="form-inline d-flex mx-1 justify-content-end"
-        @submit.stop.prevent="doSearch"
-      >
-        <div class="input-group">
-          <input
-            v-model="quickSearch"
-            type="search"
-            placeholder="Quick search"
-            class="form-control"
-          >
-          <div class="input-group-append">
-            <button
-            class="btn btn-outline-secondary"
-            type="submit"
-            >
-              Search
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
     <!-- Using the MadVueDatatable component -->
     <mad-vue-datatable
       ref="table"
@@ -117,7 +91,7 @@ export default {
         buttons: [],
         /*eslint-disable */
         dom:
-          "Btr<'row madvue-footer'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'pl>>",
+          "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         /*eslint-enable */
         responsive: true,
         processing: true,
