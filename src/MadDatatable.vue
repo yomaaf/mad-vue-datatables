@@ -32,7 +32,7 @@
     <!-- Using the MadVueDatatable component -->
     <mad-vue-datatable
       ref="table"
-      :fields="compsFields"
+      :dtfields="compsdtFields"
       :opts="options"
       v-on="$listeners"
       @reloaded="doReload"
@@ -69,7 +69,7 @@ export default {
       type: Object,
       required: false
     },
-    fields: {
+    dtfields: {
       type: Object,
       required: true
     },
@@ -136,8 +136,8 @@ export default {
     }
   },
   computed: {
-    compsFields(){
-      let dd = this.fields
+    compsdtFields(){
+      let dd = this.dtfields
       if(this.action){
         if(this.buttonFirst){
           dd = Object.assign({action:{label:this.actionLabel,data:this.actionData,sortable:false,searchable:false}},dd)

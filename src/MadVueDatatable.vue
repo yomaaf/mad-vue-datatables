@@ -52,7 +52,7 @@ export default {
     opts: {
       type: Object
     },
-    fields: {
+    dtfields: {
       type: Object
     },
     dataLoader: {
@@ -118,12 +118,12 @@ export default {
     let startCol = 0
     let icol     = 0
 
-    if (that.fields) {
-      const fields = that.fields
+    if (that.dtfields) {
+      const dtfields = that.dtfields
       let cols     = that.options.columns
 
-      for (let k in fields) {
-        const field = fields[k]
+      for (let k in dtfields) {
+        const field = dtfields[k]
         field.name  = field.name || k
 
         if (field.isLocal) {

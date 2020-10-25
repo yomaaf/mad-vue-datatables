@@ -235,7 +235,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     var vm = this;
     return {
-      fields: {
+      dtfields: {
         name: {
           label: 'Name',
           sortable: true,
@@ -336,7 +336,7 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: false
     },
-    fields: {
+    dtfields: {
       type: Object,
       required: true
     },
@@ -377,7 +377,7 @@ __webpack_require__.r(__webpack_exports__);
           },
           headers: {
             'Authorization': "Bearer ".concat(localStorage.getItem('token')),
-            'Access-Control-Allow-Origin': '*'
+            'Role': localStorage.getItem('user_group_id')
           },
           data: Object.assign({}, this.trigger)
         },
@@ -403,8 +403,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    compsFields: function compsFields() {
-      var dd = this.fields;
+    compsdtFields: function compsdtFields() {
+      var dd = this.dtfields;
 
       if (this.action) {
         if (this.buttonFirst) {
@@ -516,7 +516,7 @@ var myUniqueId = 1;
     opts: {
       type: Object
     },
-    fields: {
+    dtfields: {
       type: Object
     },
     dataLoader: {
@@ -582,12 +582,12 @@ var myUniqueId = 1;
     var startCol = 0;
     var icol = 0;
 
-    if (that.fields) {
-      var fields = that.fields;
+    if (that.dtfields) {
+      var dtfields = that.dtfields;
       var cols = that.options.columns;
 
-      for (var k in fields) {
-        var field = fields[k];
+      for (var k in dtfields) {
+        var field = dtfields[k];
         field.name = field.name || k;
 
         if (field.isLocal) {
@@ -1968,7 +1968,7 @@ var render = function() {
           attrs: {
             action: true,
             "action-data": "extn",
-            fields: _vm.fields,
+            dtfields: _vm.dtfields,
             url: "/json.txt"
           },
           on: { testing: _vm.doTesting }
@@ -2067,7 +2067,7 @@ var render = function() {
         _vm._g(
           {
             ref: "table",
-            attrs: { fields: _vm.compsFields, opts: _vm.options },
+            attrs: { dtfields: _vm.compsdtFields, opts: _vm.options },
             on: {
               reloaded: _vm.doReload,
               "table-creating": _vm.doCreating,

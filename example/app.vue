@@ -8,7 +8,7 @@
       ref="table"
       :action="true"
       action-data="extn"
-      :fields="fields"
+      :dtfields="dtfields"
       url="/json.txt"
       @testing="doTesting"
     >
@@ -34,7 +34,7 @@ export default {
   data() {
     const vm = this
     return {
-      fields: {
+      dtfields: {
         name: { label: 'Name', sortable: true, searchable: true, defaultOrder: 'desc' }
       },
     }
