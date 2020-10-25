@@ -111,7 +111,7 @@ export default {
           },
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'Access-Control-Allow-Origin':'*'
+            'Role':localStorage.getItem('user_group_id')
           },
           data: Object.assign({}, this.trigger)
         },
@@ -149,9 +149,6 @@ export default {
     }
   },
   methods: {
-    doEmit(a,b,c,d,e){
-      console.log(a,b,c,d,e)
-    },
     checkActionExist(key){
       let exist = this.actions.find(x=>x === key)
       return exist ? true : false

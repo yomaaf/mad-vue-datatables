@@ -32,25 +32,7 @@
 </template>
 
 <script>
-const jQuery = require('jquery')
-import Vue from 'vue'
-if(!window.Vue){
-  window.Vue = Vue
-}
-if(!window.jQuery){
-  window.jQuery = jQuery
-  window.$ = jQuery
-}
 let myUniqueId = 1
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css'
-import 'datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css'
-import 'popper.js'
-import 'bootstrap/dist/js/bootstrap'
-import 'datatables.net-bs4'
-import 'datatables.net-responsive'
-import 'datatables.net-responsive-bs4'
 
 export default {
   name: 'MadVueDatatable',
@@ -101,7 +83,7 @@ export default {
   },
   computed: {
     jq() {
-      return window.jQuery
+      return window.jQuery || window.$
     },
     myVue() {
       return window.Vue
