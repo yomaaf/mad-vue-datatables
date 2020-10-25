@@ -224,8 +224,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -264,7 +262,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MadVueDatatable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MadVueDatatable */ "./src/MadVueDatatable.vue");
-//
 //
 //
 //
@@ -1974,7 +1971,7 @@ var render = function() {
           on: { testing: _vm.doTesting }
         },
         [
-          _c("template", { slot: "custom" }, [
+          [
             _c(
               "button",
               {
@@ -1983,7 +1980,7 @@ var render = function() {
               },
               [_vm._v("\n  Test\n  ")]
             )
-          ])
+          ]
         ],
         2
       )
@@ -2078,7 +2075,7 @@ var render = function() {
                 {
                   key: "action",
                   fn: function(ctx) {
-                    return [_vm._t("custom", null, { ctx: ctx })]
+                    return [_vm._t("default", null, { ctx: ctx })]
                   }
                 }
               ],

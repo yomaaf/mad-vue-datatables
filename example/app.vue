@@ -12,9 +12,7 @@
       url="/json.txt"
       @testing="doTesting"
     >
-    <template
-    slot="custom"
-    >
+    <template>
     <button
     class="btn btn-success"
     data-action="testing"

@@ -44,7 +44,6 @@
       slot-scope="ctx"
       >
       <slot
-      name="custom"
       :ctx="ctx"
       />
       <!-- <button
