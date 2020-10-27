@@ -337,8 +337,9 @@ __webpack_require__.r(__webpack_exports__);
       options: {
         ajax: {
           url: "".concat(this.url),
-          dataSrc: function dataSrc(json) {
+          dataSrc: function dataSrc(json, xhr) {
             vm.$emit('data', json);
+            console.log(json, xhr);
             return json.data;
           },
           headers: {
@@ -384,6 +385,14 @@ __webpack_require__.r(__webpack_exports__);
               searchable: false
             }
           }, dd);
+          dd = Object.assign({
+            no: {
+              label: 'No.',
+              render: function render(data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+              }
+            }
+          }, dd);
         } else {
           dd = Object.assign(dd, {
             action: {
@@ -395,6 +404,14 @@ __webpack_require__.r(__webpack_exports__);
               searchable: false
             }
           });
+          dd = Object.assign({
+            no: {
+              label: 'No.',
+              render: function render(data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+              }
+            }
+          }, dd);
         }
       }
 
