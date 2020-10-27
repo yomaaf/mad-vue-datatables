@@ -388,6 +388,9 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign({
             no: {
               label: 'No.',
+              data: function data(_data2) {
+                return _data2;
+              },
               render: function render(data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
               }
@@ -397,8 +400,8 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign(dd, {
             action: {
               label: this.actionLabel,
-              data: function data(_data2) {
-                return _data2;
+              data: function data(_data3) {
+                return _data3;
               },
               sortable: false,
               searchable: false
@@ -407,6 +410,9 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign({
             no: {
               label: 'No.',
+              data: function data(_data4) {
+                return _data4;
+              },
               render: function render(data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
               }

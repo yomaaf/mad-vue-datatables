@@ -110,10 +110,10 @@ export default {
       if(this.action){
         if(this.buttonFirst){
           dd = Object.assign({action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}},dd)
-          dd = Object.assign({no:{label:'No.',render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
+          dd = Object.assign({no:{label:'No.',data:function(data){return data},render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
         }else{
           dd = Object.assign(dd,{action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}})
-          dd = Object.assign({no:{label:'No.',render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
+          dd = Object.assign({no:{label:'No.',data:function(data){return data},render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
         }
       }
       return dd
