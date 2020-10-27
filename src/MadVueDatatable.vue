@@ -33,7 +33,7 @@
 
 <script>
 let myUniqueId = 1
-
+import Vue from 'vue/dist/vue'
 export default {
   name: 'MadVueDatatable',
   props: {
@@ -86,7 +86,7 @@ export default {
       return window.jQuery || window.$
     },
     myVue() {
-      return window.Vue
+      return Vue
     },
     classes() {
       const that  = this
