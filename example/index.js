@@ -388,6 +388,8 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign({
             no: {
               label: 'No.',
+              sortable: false,
+              searchable: false,
               data: function data(_data2) {
                 return _data2;
               },
@@ -410,6 +412,8 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign({
             no: {
               label: 'No.',
+              sortable: false,
+              searchable: false,
               data: function data(_data4) {
                 return _data4;
               },
