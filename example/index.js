@@ -311,11 +311,6 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: true
     },
-    actionData: {
-      type: String,
-      required: false,
-      "default": 'id'
-    },
     actionLabel: {
       type: String,
       required: false,
@@ -382,7 +377,9 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign({
             action: {
               label: this.actionLabel,
-              data: this.actionData,
+              data: function data(_data) {
+                return _data;
+              },
               sortable: false,
               searchable: false
             }
@@ -391,7 +388,9 @@ __webpack_require__.r(__webpack_exports__);
           dd = Object.assign(dd, {
             action: {
               label: this.actionLabel,
-              data: this.actionData,
+              data: function data(_data2) {
+                return _data2;
+              },
               sortable: false,
               searchable: false
             }
@@ -1935,32 +1934,33 @@ var render = function() {
     "div",
     { staticClass: "col-12", attrs: { id: "app" } },
     [
-      _c(
-        "mad-vue-datatable",
-        {
-          ref: "table",
-          attrs: {
-            action: true,
-            "action-data": "extn",
-            dtfields: _vm.dtfields,
-            url: "/json.txt"
-          },
-          on: { testing: _vm.doTesting }
+      _c("mad-vue-datatable", {
+        ref: "table",
+        attrs: {
+          action: true,
+          "action-data": "extn",
+          dtfields: _vm.dtfields,
+          url: "/json.txt"
         },
-        [
-          [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success",
-                attrs: { "data-action": "testing" }
-              },
-              [_vm._v("\n  Test\n  ")]
-            )
-          ]
-        ],
-        2
-      )
+        on: { testing: _vm.doTesting },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(props) {
+              return [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { "data-action": "testing" }
+                  },
+                  [_vm._v("\n  " + _vm._s(props.ctx.data.name) + "\n  ")]
+                )
+              ]
+            }
+          }
+        ])
+      })
     ],
     1
   )

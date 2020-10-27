@@ -46,11 +46,6 @@ export default {
       type: Object,
       required: true
     },
-    actionData:{
-      type: String,
-      required:false,
-      default:'id'
-    },
     actionLabel:{
       type: String,
       required:false,
@@ -113,9 +108,9 @@ export default {
       let dd = this.dtfields
       if(this.action){
         if(this.buttonFirst){
-          dd = Object.assign({action:{label:this.actionLabel,data:this.actionData,sortable:false,searchable:false}},dd)
+          dd = Object.assign({action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}},dd)
         }else{
-          dd = Object.assign(dd,{action:{label:this.actionLabel,data:this.actionData,sortable:false,searchable:false}})
+          dd = Object.assign(dd,{action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}})
         }
       }
       return dd

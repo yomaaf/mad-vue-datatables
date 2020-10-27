@@ -12,12 +12,12 @@
       url="/json.txt"
       @testing="doTesting"
     >
-    <template>
+    <template slot-scope="props">
     <button
     class="btn btn-success"
     data-action="testing"
     >
-    Test
+    {{ props.ctx.data.name }}
     </button>
     </template>
     </mad-vue-datatable>
