@@ -205,10 +205,12 @@ export default {
               let field = that.dtfields[ii]
               if (field.hasOwnProperty('searchable')) {
                 if(field.searchable){
-                  $(this).html( '<input style="border: 1px solid #aaa;border-radius: 3px;padding: 5px;background-color: transparent;margin-left: 3px;" type="text" placeholder="Search '+title+'" />' )
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
                 }else{
                   $(this).html('')
                 }
+              }else{
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
               }
             }
             numbering++

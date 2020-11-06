@@ -81,7 +81,6 @@ export default {
           url: `${this.url}`,
           dataSrc: (json,xhr) => {
             vm.$emit('data', json)
-            console.log(json,xhr)
             return json.data
           },
           headers: {

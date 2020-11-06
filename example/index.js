@@ -346,7 +346,6 @@ __webpack_require__.r(__webpack_exports__);
           url: "".concat(this.url),
           dataSrc: function dataSrc(json, xhr) {
             vm.$emit('data', json);
-            console.log(json, xhr);
             return json.data;
           },
           headers: {
@@ -673,10 +672,12 @@ var myUniqueId = 1;
 
             if (_field.hasOwnProperty('searchable')) {
               if (_field.searchable) {
-                $(this).html('<input style="border: 1px solid #aaa;border-radius: 3px;padding: 5px;background-color: transparent;margin-left: 3px;" type="text" placeholder="Search ' + title + '" />');
+                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
               } else {
                 $(this).html('');
               }
+            } else {
+              $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
             }
           }
 
