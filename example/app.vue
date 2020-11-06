@@ -34,7 +34,12 @@ export default {
     const vm = this
     return {
       dtfields: {
-        name: { label: 'Name', sortable: true, searchable: true, defaultOrder: 'desc' }
+        name: { label: 'Name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name2: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name3: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name4: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name5: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name6: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' }
       },
     }
   },

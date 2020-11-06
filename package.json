@@ -1,7 +1,7 @@
 {
   "name": "mad-vue-datatables",
   "description": "Vue jQuery DataTables.net wrapper component",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "author": "rahmadafandiii@gmail.com",
   "license": "MIT",
   "main": "lib/index.js",

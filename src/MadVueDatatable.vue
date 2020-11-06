@@ -197,6 +197,37 @@ export default {
     that.dataTable = $el.DataTable(that.options)
     if(that.columnFiltering){
       $(`#${that.tableId} thead tr`).clone(true).appendTo(`#${that.tableId} thead`)
+      $(window).on('resize',function(){
+        $(`#${that.tableId} thead tr:eq(1)`).remove()
+        $(`#${that.tableId} thead tr`).clone(true).appendTo(`#${that.tableId} thead`)
+        $(`#${that.tableId} thead tr:eq(1) th`).each( function (i) {
+          var title = $(this).text()
+          let numbering = 0
+          for(let ii in that.dtfields){
+            if(numbering==i){
+              let field = that.dtfields[ii]
+              if (field.hasOwnProperty('searchable')) {
+                if(field.searchable){
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+                }else{
+                  $(this).html('')
+                }
+              }else{
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+              }
+            }
+            numbering++
+          }
+          $( 'input', this ).on( 'keyup change', function () {
+              if ( that.dataTable.column(i).search() !== this.value ) {
+                  that.dataTable
+                      .column(i)
+                      .search( this.value )
+                      .draw()
+              }
+          } )
+      } )
+      })
       $(`#${that.tableId} thead tr:eq(1) th`).each( function (i) {
           var title = $(this).text()
           let numbering = 0

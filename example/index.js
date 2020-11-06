@@ -240,6 +240,41 @@ __webpack_require__.r(__webpack_exports__);
           sortable: true,
           searchable: true,
           defaultOrder: 'desc'
+        },
+        name2: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name3: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name4: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name5: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name6: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
         }
       }
     };
@@ -662,16 +697,48 @@ var myUniqueId = 1;
 
     if (that.columnFiltering) {
       $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
+      $(window).on('resize', function () {
+        $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
+        $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
+        $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
+          var title = $(this).text();
+          var numbering = 0;
+
+          for (var ii in that.dtfields) {
+            if (numbering == i) {
+              var _field = that.dtfields[ii];
+
+              if (_field.hasOwnProperty('searchable')) {
+                if (_field.searchable) {
+                  $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+                } else {
+                  $(this).html('');
+                }
+              } else {
+                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+              }
+            }
+
+            numbering++;
+          }
+
+          $('input', this).on('keyup change', function () {
+            if (that.dataTable.column(i).search() !== this.value) {
+              that.dataTable.column(i).search(this.value).draw();
+            }
+          });
+        });
+      });
       $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
         var title = $(this).text();
         var numbering = 0;
 
         for (var ii in that.dtfields) {
           if (numbering == i) {
-            var _field = that.dtfields[ii];
+            var _field2 = that.dtfields[ii];
 
-            if (_field.hasOwnProperty('searchable')) {
-              if (_field.searchable) {
+            if (_field2.hasOwnProperty('searchable')) {
+              if (_field2.searchable) {
                 $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
               } else {
                 $(this).html('');
