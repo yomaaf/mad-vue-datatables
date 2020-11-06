@@ -9,25 +9,7 @@
       style="width:100%;"
       :class="className"
       cellpadding="0"
-    >
-      <thead>
-        <tr>
-          <th
-            v-for="(field, i) in options.columns"
-            :key="i"
-            :class="field.className"
-          >
-            <slot
-              :name="'header_'+field.name"
-              :field="field"
-              :i="i"
-            >
-              <div v-html="field.title" />
-            </slot>
-          </th>
-        </tr>
-      </thead>
-    </table>
+    />
   </div>
 </template>
 
@@ -61,6 +43,9 @@ export default {
     hideFooter: {
       type: Boolean
     },
+    columnFiltering:{
+      type: Boolean
+    }
   },
   data() {
     return {
@@ -210,7 +195,34 @@ export default {
     that.$emit('table-creating', that, $el)
 
     that.dataTable = $el.DataTable(that.options)
-
+    if(that.columnFiltering){
+      $(`#${that.tableId} thead tr`).clone(true).appendTo(`#${that.tableId} thead`)
+      $(`#${that.tableId} thead tr:eq(1) th`).each( function (i) {
+          var title = $(this).text()
+          let numbering = 0
+          for(let ii in that.dtfields){
+            if(numbering==i){
+              let field = that.dtfields[ii]
+              if (field.hasOwnProperty('searchable')) {
+                if(field.searchable){
+                  $(this).html( '<input style="border: 1px solid #aaa;border-radius: 3px;padding: 5px;background-color: transparent;margin-left: 3px;" type="text" placeholder="Search '+title+'" />' )
+                }else{
+                  $(this).html('')
+                }
+              }
+            }
+            numbering++
+          }
+          $( 'input', this ).on( 'keyup change', function () {
+              if ( that.dataTable.column(i).search() !== this.value ) {
+                  that.dataTable
+                      .column(i)
+                      .search( this.value )
+                      .draw()
+              }
+          } )
+      } )
+    }
     $el.on('click', '[data-action]', (e) => {
       e.preventDefault()
       e.stopPropagation()

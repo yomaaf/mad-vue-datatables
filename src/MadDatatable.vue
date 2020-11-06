@@ -8,6 +8,7 @@
       ref="table"
       :dtfields="compsdtFields"
       :opts="options"
+      :column-filtering="columnFiltering"
       v-on="$listeners"
       @reloaded="doReload"
       @table-creating="doCreating"
@@ -64,6 +65,11 @@ export default {
     url: {
       type: String,
       required: true
+    },
+    columnFiltering:{
+      type: Boolean,
+      required: false,
+      default:false
     }
   },
   data() {
@@ -94,6 +100,7 @@ export default {
         searching: true,
         searchDelay: 1500,
         destroy: true,
+        orderCellsTop: true,
         ordering: true,
         lengthChange: true,
         serverSide: true,
@@ -110,11 +117,10 @@ export default {
       if(this.action){
         if(this.buttonFirst){
           dd = Object.assign({action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}},dd)
-          dd = Object.assign({no:{label:'No.',sortable:false,searchable:false,data:function(data){return data},render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
         }else{
           dd = Object.assign(dd,{action:{label:this.actionLabel,data:function(data){return data},sortable:false,searchable:false}})
-          dd = Object.assign({no:{label:'No.',sortable:false,searchable:false,data:function(data){return data},render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
         }
+        dd = Object.assign({no:{label:'No.',sortable:false,searchable:false,data:function(data){return data},render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1}}},dd)
       }
       return dd
     }

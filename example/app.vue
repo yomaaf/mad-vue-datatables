@@ -8,6 +8,7 @@
       ref="table"
       :action="true"
       action-data="extn"
+      :column-filtering="true"
       :dtfields="dtfields"
       url="/json.txt"
       @testing="doTesting"

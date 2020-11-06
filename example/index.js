@@ -224,6 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -295,6 +296,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // this demonstrate with buttons and responsive master/details row
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -329,6 +331,11 @@ __webpack_require__.r(__webpack_exports__);
     url: {
       type: String,
       required: true
+    },
+    columnFiltering: {
+      type: Boolean,
+      required: false,
+      "default": false
     }
   },
   data: function data() {
@@ -359,6 +366,7 @@ __webpack_require__.r(__webpack_exports__);
         searching: true,
         searchDelay: 1500,
         destroy: true,
+        orderCellsTop: true,
         ordering: true,
         lengthChange: true,
         serverSide: true,
@@ -385,44 +393,32 @@ __webpack_require__.r(__webpack_exports__);
               searchable: false
             }
           }, dd);
-          dd = Object.assign({
-            no: {
-              label: 'No.',
-              sortable: false,
-              searchable: false,
-              data: function data(_data2) {
-                return _data2;
-              },
-              render: function render(data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
-              }
-            }
-          }, dd);
         } else {
           dd = Object.assign(dd, {
             action: {
               label: this.actionLabel,
-              data: function data(_data3) {
-                return _data3;
+              data: function data(_data2) {
+                return _data2;
               },
               sortable: false,
               searchable: false
             }
           });
-          dd = Object.assign({
-            no: {
-              label: 'No.',
-              sortable: false,
-              searchable: false,
-              data: function data(_data4) {
-                return _data4;
-              },
-              render: function render(data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
-              }
-            }
-          }, dd);
         }
+
+        dd = Object.assign({
+          no: {
+            label: 'No.',
+            sortable: false,
+            searchable: false,
+            data: function data(_data3) {
+              return _data3;
+            },
+            render: function render(data, type, row, meta) {
+              return meta.row + meta.settings._iDisplayStart + 1;
+            }
+          }
+        }, dd);
       }
 
       return dd;
@@ -478,24 +474,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var myUniqueId = 1;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -523,6 +501,9 @@ var myUniqueId = 1;
       type: Function
     },
     hideFooter: {
+      type: Boolean
+    },
+    columnFiltering: {
       type: Boolean
     }
   },
@@ -679,6 +660,37 @@ var myUniqueId = 1;
 
     that.$emit('table-creating', that, $el);
     that.dataTable = $el.DataTable(that.options);
+
+    if (that.columnFiltering) {
+      $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
+      $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
+        var title = $(this).text();
+        var numbering = 0;
+
+        for (var ii in that.dtfields) {
+          if (numbering == i) {
+            var _field = that.dtfields[ii];
+
+            if (_field.hasOwnProperty('searchable')) {
+              if (_field.searchable) {
+                $(this).html('<input style="border: 1px solid #aaa;border-radius: 3px;padding: 5px;background-color: transparent;margin-left: 3px;" type="text" placeholder="Search ' + title + '" />');
+              } else {
+                $(this).html('');
+              }
+            }
+          }
+
+          numbering++;
+        }
+
+        $('input', this).on('keyup change', function () {
+          if (that.dataTable.column(i).search() !== this.value) {
+            that.dataTable.column(i).search(this.value).draw();
+          }
+        });
+      });
+    }
+
     $el.on('click', '[data-action]', function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -1966,6 +1978,7 @@ var render = function() {
         attrs: {
           action: true,
           "action-data": "extn",
+          "column-filtering": true,
           dtfields: _vm.dtfields,
           url: "/json.txt"
         },
@@ -2023,7 +2036,11 @@ var render = function() {
         _vm._g(
           {
             ref: "table",
-            attrs: { dtfields: _vm.compsdtFields, opts: _vm.options },
+            attrs: {
+              dtfields: _vm.compsdtFields,
+              opts: _vm.options,
+              "column-filtering": _vm.columnFiltering
+            },
             on: {
               reloaded: _vm.doReload,
               "table-creating": _vm.doCreating,
@@ -2078,41 +2095,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      {
-        ref: "table",
-        class: _vm.className,
-        staticStyle: { width: "100%" },
-        attrs: { id: _vm.tableId, cellpadding: "0" }
-      },
-      [
-        _c("thead", [
-          _c(
-            "tr",
-            _vm._l(_vm.options.columns, function(field, i) {
-              return _c(
-                "th",
-                { key: i, class: field.className },
-                [
-                  _vm._t(
-                    "header_" + field.name,
-                    [
-                      _c("div", {
-                        domProps: { innerHTML: _vm._s(field.title) }
-                      })
-                    ],
-                    { field: field, i: i }
-                  )
-                ],
-                2
-              )
-            }),
-            0
-          )
-        ])
-      ]
-    )
+    return _c("table", {
+      ref: "table",
+      class: _vm.className,
+      staticStyle: { width: "100%" },
+      attrs: { id: _vm.tableId, cellpadding: "0" }
+    })
   }
 ]
 render._withStripped = true
