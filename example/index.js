@@ -224,7 +224,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -371,9 +370,57 @@ __webpack_require__.r(__webpack_exports__);
       type: Boolean,
       required: false,
       "default": false
+    },
+    language: {
+      type: String,
+      required: false,
+      "default": 'id'
     }
   },
   data: function data() {
+    var languages = {
+      en: {
+        'sEmptyTable': 'No data available in table',
+        'sInfo': 'Showing _START_ to _END_ of _TOTAL_ entries',
+        'sInfoEmpty': 'Showing 0 to 0 of 0 entries',
+        'sInfoFiltered': '(filtered from _MAX_ total entries)',
+        'sInfoPostFix': '',
+        'sInfoThousands': ',',
+        'sLengthMenu': 'Show _MENU_ entries',
+        'sLoadingRecords': 'Loading...',
+        'sProcessing': 'Processing...',
+        'sSearch': 'Search:',
+        'sZeroRecords': 'No matching records found',
+        'oPaginate': {
+          'sFirst': '<<',
+          'sLast': '>>',
+          'sNext': '>',
+          'sPrevious': '<'
+        },
+        'oAria': {
+          'sSortAscending': ': activate to sort column ascending',
+          'sSortDescending': ': activate to sort column descending'
+        }
+      },
+      id: {
+        'sEmptyTable': 'Tidak ada data yang tersedia pada tabel ini',
+        'sProcessing': 'Sedang memproses...',
+        'sLengthMenu': 'Tampilkan _MENU_ entri',
+        'sZeroRecords': 'Tidak ditemukan data yang sesuai',
+        'sInfo': 'Menampilkan _START_ sampai _END_ dari _TOTAL_ entri',
+        'sInfoEmpty': 'Menampilkan 0 sampai 0 dari 0 entri',
+        'sInfoFiltered': '(disaring dari _MAX_ entri keseluruhan)',
+        'sInfoPostFix': '',
+        'sSearch': 'Cari:',
+        'sUrl': '',
+        'oPaginate': {
+          'sFirst': '<<',
+          'sLast': '>>',
+          'sNext': '>',
+          'sPrevious': '<'
+        }
+      }
+    };
     var vm = this;
     return {
       options: {
@@ -405,7 +452,8 @@ __webpack_require__.r(__webpack_exports__);
         lengthChange: true,
         serverSide: true,
         fixedHeader: true,
-        saveState: true
+        saveState: true,
+        language: languages[vm.language] !== undefined ? languages[vm.language] : languages.id
       },
       quickSearch: '',
       details: {}
@@ -710,12 +758,12 @@ var myUniqueId = 1;
 
               if (_field.hasOwnProperty('searchable')) {
                 if (_field.searchable) {
-                  $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+                  $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" value="' + that.dataTable.column(i).search() + '" />');
                 } else {
                   $(this).html('');
                 }
               } else {
-                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" value="' + that.dataTable.column(i).search() + '" />');
               }
             }
 
@@ -739,12 +787,12 @@ var myUniqueId = 1;
 
             if (_field2.hasOwnProperty('searchable')) {
               if (_field2.searchable) {
-                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
               } else {
                 $(this).html('');
               }
             } else {
-              $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Search ' + title + '" />');
+              $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
             }
           }
 
@@ -2045,7 +2093,6 @@ var render = function() {
         ref: "table",
         attrs: {
           action: true,
-          "action-data": "extn",
           "column-filtering": true,
           dtfields: _vm.dtfields,
           url: "/json.txt"

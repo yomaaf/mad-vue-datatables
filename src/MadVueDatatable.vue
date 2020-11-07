@@ -208,12 +208,12 @@ export default {
               let field = that.dtfields[ii]
               if (field.hasOwnProperty('searchable')) {
                 if(field.searchable){
-                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="'+title+'" value="'+ that.dataTable.column(i).search() +'" />' )
                 }else{
                   $(this).html('')
                 }
               }else{
-                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="'+title+'" value="'+ that.dataTable.column(i).search() +'" />' )
               }
             }
             numbering++
@@ -236,12 +236,12 @@ export default {
               let field = that.dtfields[ii]
               if (field.hasOwnProperty('searchable')) {
                 if(field.searchable){
-                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="'+title+'" />' )
                 }else{
                   $(this).html('')
                 }
               }else{
-                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Search '+title+'" />' )
+                  $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="'+title+'" />' )
               }
             }
             numbering++

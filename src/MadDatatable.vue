@@ -70,9 +70,57 @@ export default {
       type: Boolean,
       required: false,
       default:false
+    },
+    language:{
+      type: String,
+      required:false,
+      default:'id'
     }
   },
   data() {
+    let languages = {
+      en:{
+        'sEmptyTable':     'No data available in table',
+        'sInfo':           'Showing _START_ to _END_ of _TOTAL_ entries',
+        'sInfoEmpty':      'Showing 0 to 0 of 0 entries',
+        'sInfoFiltered':   '(filtered from _MAX_ total entries)',
+        'sInfoPostFix':    '',
+        'sInfoThousands':  ',',
+        'sLengthMenu':     'Show _MENU_ entries',
+        'sLoadingRecords': 'Loading...',
+        'sProcessing':     'Processing...',
+        'sSearch':         'Search:',
+        'sZeroRecords':    'No matching records found',
+        'oPaginate': {
+            'sFirst':    '<<',
+            'sLast':     '>>',
+            'sNext':     '>',
+            'sPrevious': '<'
+        },
+        'oAria': {
+            'sSortAscending':  ': activate to sort column ascending',
+            'sSortDescending': ': activate to sort column descending'
+        }
+      },
+      id:{
+        'sEmptyTable':   'Tidak ada data yang tersedia pada tabel ini',
+        'sProcessing':   'Sedang memproses...',
+        'sLengthMenu':   'Tampilkan _MENU_ entri',
+        'sZeroRecords':  'Tidak ditemukan data yang sesuai',
+        'sInfo':         'Menampilkan _START_ sampai _END_ dari _TOTAL_ entri',
+        'sInfoEmpty':    'Menampilkan 0 sampai 0 dari 0 entri',
+        'sInfoFiltered': '(disaring dari _MAX_ entri keseluruhan)',
+        'sInfoPostFix':  '',
+        'sSearch':       'Cari:',
+        'sUrl':          '',
+        'oPaginate': {
+            'sFirst':    '<<',
+            'sLast':     '>>',
+            'sNext':     '>',
+            'sPrevious': '<'
+        }
+      }
+    }
     const vm = this
 
     return {
@@ -104,7 +152,8 @@ export default {
         lengthChange: true,
         serverSide: true,
         fixedHeader: true,
-        saveState: true
+        saveState: true,
+        language: languages[vm.language]!==undefined?languages[vm.language]:languages.id
       },
       quickSearch: '',
       details: {}

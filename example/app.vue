@@ -7,7 +7,6 @@
     <mad-vue-datatable
       ref="table"
       :action="true"
-      action-data="extn"
       :column-filtering="true"
       :dtfields="dtfields"
       url="/json.txt"
