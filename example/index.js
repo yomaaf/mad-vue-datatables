@@ -745,8 +745,11 @@ var myUniqueId = 1;
 
     if (that.columnFiltering) {
       $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
-      $(window).on('resize', function () {
-        $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
+      $(window).on('resize load', function () {
+        if ($("#".concat(that.tableId, " thead tr:eq(1)")).length == 1) {
+          $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
+        }
+
         $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
         $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
           var title = $(this).text();
@@ -775,34 +778,6 @@ var myUniqueId = 1;
               that.dataTable.column(i).search(this.value).draw();
             }
           });
-        });
-      });
-      $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
-        var title = $(this).text();
-        var numbering = 0;
-
-        for (var ii in that.dtfields) {
-          if (numbering == i) {
-            var _field2 = that.dtfields[ii];
-
-            if (_field2.hasOwnProperty('searchable')) {
-              if (_field2.searchable) {
-                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
-              } else {
-                $(this).html('');
-              }
-            } else {
-              $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
-            }
-          }
-
-          numbering++;
-        }
-
-        $('input', this).on('keyup change', function () {
-          if (that.dataTable.column(i).search() !== this.value) {
-            that.dataTable.column(i).search(this.value).draw();
-          }
         });
       });
     }
