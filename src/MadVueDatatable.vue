@@ -248,9 +248,9 @@ export default {
       if (action) {
         let tr = target.closest('tr')
         if (tr) {
-          // if (tr.attr('role') !== 'row') {
-          //   tr = tr.prev()
-          // }
+          if (tr.attr('role') !== 'row') {
+            tr = tr.prev()
+          }
           const row  = that.dataTable.row(tr)
           const data = row.data()
           that.$emit(action, data, row, tr, target)

@@ -801,9 +801,10 @@ var myUniqueId = 1;
         var tr = target.closest('tr');
 
         if (tr) {
-          // if (tr.attr('role') !== 'row') {
-          //   tr = tr.prev()
-          // }
+          if (tr.attr('role') !== 'row') {
+            tr = tr.prev();
+          }
+
           var row = that.dataTable.row(tr);
           var data = row.data();
           that.$emit(action, data, row, tr, target);
