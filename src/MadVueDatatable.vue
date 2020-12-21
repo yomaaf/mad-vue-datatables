@@ -248,7 +248,7 @@ export default {
       if (action) {
         let tr = target.closest('tr')
         if (tr) {
-          if (tr.attr('role') !== 'row') {
+          if (tr.hasClass('child')) {
             tr = tr.prev()
           }
           const row  = that.dataTable.row(tr)

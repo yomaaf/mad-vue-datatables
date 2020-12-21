@@ -152,7 +152,8 @@ export default {
         lengthChange: true,
         serverSide: true,
         fixedHeader: true,
-        saveState: true,
+        stateSave: true,
+        stateDuration: -1,
         language: languages[vm.language]!==undefined?languages[vm.language]:languages.id
       },
       quickSearch: '',

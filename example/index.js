@@ -452,7 +452,8 @@ __webpack_require__.r(__webpack_exports__);
         lengthChange: true,
         serverSide: true,
         fixedHeader: true,
-        saveState: true,
+        stateSave: true,
+        stateDuration: -1,
         language: languages[vm.language] !== undefined ? languages[vm.language] : languages.id
       },
       quickSearch: '',
@@ -801,7 +802,7 @@ var myUniqueId = 1;
         var tr = target.closest('tr');
 
         if (tr) {
-          if (tr.attr('role') !== 'row') {
+          if (tr.hasClass('child')) {
             tr = tr.prev();
           }
 
