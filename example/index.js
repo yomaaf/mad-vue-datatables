@@ -562,8 +562,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 var myUniqueId = 1;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -755,7 +753,7 @@ var myUniqueId = 1;
     that.dataTable = $el.DataTable(that.options);
 
     if (that.columnFiltering) {
-      $(window).on('resize load', function () {
+      $(window).on('resize', function () {
         if ($("#".concat(that.tableId, " thead tr:eq(1)")).length == 1) {
           $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
         }
@@ -792,6 +790,41 @@ var myUniqueId = 1;
       });
     }
 
+    $(document).ready(function () {
+      if ($("#".concat(that.tableId, " thead tr:eq(1)")).length == 1) {
+        $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
+      }
+
+      $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
+      $("#".concat(that.tableId, " thead tr:eq(1) th")).each(function (i) {
+        var title = $(this).text();
+        var numbering = 0;
+
+        for (var ii in that.dtfields) {
+          if (numbering == i) {
+            var _field2 = that.dtfields[ii];
+
+            if (_field2.hasOwnProperty('searchable')) {
+              if (_field2.searchable) {
+                $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" value="' + that.dataTable.column(i).search() + '" />');
+              } else {
+                $(this).html('');
+              }
+            } else {
+              $(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" value="' + that.dataTable.column(i).search() + '" />');
+            }
+          }
+
+          numbering++;
+        }
+
+        $('input', this).on('keyup change', function () {
+          if (that.dataTable.column(i).search() !== this.value) {
+            that.dataTable.column(i).search(this.value).draw();
+          }
+        });
+      });
+    });
     $el.on('click', '[data-action]', function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -946,7 +979,7 @@ var myUniqueId = 1;
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n.madvue-footer .dataTables_length {\n  padding-top: 6px;\n  padding-right: 10px;\n}\n.madvue-footer .dataTables_length, .madvue-footer .dataTables_paginate {\n  float: right;\n}\n.hide-footer .madvue-footer {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n.madvue-footer .dataTables_length {\n  padding-top: 6px;\n  padding-right: 10px;\n}\n.madvue-footer .dataTables_length,\n.madvue-footer .dataTables_paginate {\n  float: right;\n}\n.hide-footer .madvue-footer {\n  display: none;\n}\n", ""]);
 
 
 
