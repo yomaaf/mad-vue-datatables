@@ -45,6 +45,9 @@ export default {
     },
     columnFiltering:{
       type: Boolean
+    },
+    tableName:{
+      type:String
     }
   },
   data() {
@@ -87,7 +90,7 @@ export default {
     const that = this
     const jq   = that.jq
 
-    that.tableId = that.id || `madvuetable${myUniqueId++}`
+    that.tableId = that.tableName == 'madvuetable' ? `madvuetable${myUniqueId++}` : that.tableName
 
     // allow user to override default options
     if (that.opts) {
@@ -196,7 +199,6 @@ export default {
 
     that.dataTable = $el.DataTable(that.options)
     if(that.columnFiltering){
-      $(`#${that.tableId} thead tr`).clone(true).appendTo(`#${that.tableId} thead`)
       $(window).on('resize load',function(){
         if($(`#${that.tableId} thead tr:eq(1)`).length==1){
           $(`#${that.tableId} thead tr:eq(1)`).remove()

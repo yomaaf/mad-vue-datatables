@@ -8,6 +8,7 @@
       ref="table"
       :dtfields="compsdtFields"
       :opts="options"
+      :table-name="tableName"
       :column-filtering="columnFiltering"
       v-on="$listeners"
       @reloaded="doReload"
@@ -70,6 +71,11 @@ export default {
       type: Boolean,
       required: false,
       default:false
+    },
+    tableName:{
+      type: String,
+      required:false,
+      default:'madvuetable'
     },
     language:{
       type: String,

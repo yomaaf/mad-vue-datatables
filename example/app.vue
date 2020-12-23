@@ -9,6 +9,7 @@
       :action="true"
       :column-filtering="true"
       :dtfields="dtfields"
+      :table-name="'example'"
       url="/json.txt"
       @testing="doTesting"
     >

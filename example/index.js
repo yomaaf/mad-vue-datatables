@@ -224,6 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -331,6 +332,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // this demonstrate with buttons and responsive master/details row
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -370,6 +372,11 @@ __webpack_require__.r(__webpack_exports__);
       type: Boolean,
       required: false,
       "default": false
+    },
+    tableName: {
+      type: String,
+      required: false,
+      "default": 'madvuetable'
     },
     language: {
       type: String,
@@ -588,6 +595,9 @@ var myUniqueId = 1;
     },
     columnFiltering: {
       type: Boolean
+    },
+    tableName: {
+      type: String
     }
   },
   data: function data() {
@@ -632,7 +642,7 @@ var myUniqueId = 1;
   created: function created() {
     var that = this;
     var jq = that.jq;
-    that.tableId = that.id || "madvuetable".concat(myUniqueId++); // allow user to override default options
+    that.tableId = that.tableName == 'madvuetable' ? "madvuetable".concat(myUniqueId++) : that.tableName; // allow user to override default options
 
     if (that.opts) {
       that.options = jq.extend({}, that.options, that.opts);
@@ -745,7 +755,6 @@ var myUniqueId = 1;
     that.dataTable = $el.DataTable(that.options);
 
     if (that.columnFiltering) {
-      $("#".concat(that.tableId, " thead tr")).clone(true).appendTo("#".concat(that.tableId, " thead"));
       $(window).on('resize load', function () {
         if ($("#".concat(that.tableId, " thead tr:eq(1)")).length == 1) {
           $("#".concat(that.tableId, " thead tr:eq(1)")).remove();
@@ -2071,6 +2080,7 @@ var render = function() {
           action: true,
           "column-filtering": true,
           dtfields: _vm.dtfields,
+          "table-name": "example",
           url: "/json.txt"
         },
         on: { testing: _vm.doTesting },
@@ -2130,6 +2140,7 @@ var render = function() {
             attrs: {
               dtfields: _vm.compsdtFields,
               opts: _vm.options,
+              "table-name": _vm.tableName,
               "column-filtering": _vm.columnFiltering
             },
             on: {
