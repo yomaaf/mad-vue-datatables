@@ -824,6 +824,7 @@ var myUniqueId = 1;
           }
         });
       });
+      that.dataTable.responsive.recalc();
     });
     $el.on('click', '[data-action]', function (e) {
       e.preventDefault();

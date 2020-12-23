@@ -304,6 +304,7 @@ export default {
           }
         })
       })
+      that.dataTable.responsive.recalc()
     })
     $el.on('click', '[data-action]', e => {
       e.preventDefault()
