@@ -257,22 +257,32 @@ export default {
           })
         })
       })
-    }
-    $(document).ready(function() {
-      if ($(`#${that.tableId} thead tr:eq(1)`).length == 1) {
-        $(`#${that.tableId} thead tr:eq(1)`).remove()
-      }
-      $(`#${that.tableId} thead tr`)
-        .clone(true)
-        .appendTo(`#${that.tableId} thead`)
-      $(`#${that.tableId} thead tr:eq(1) th`).each(function(i) {
-        var title = $(this).text()
-        let numbering = 0
-        for (let ii in that.dtfields) {
-          if (numbering == i) {
-            let field = that.dtfields[ii]
-            if (field.hasOwnProperty('searchable')) {
-              if (field.searchable) {
+      $(document).ready(function() {
+        if ($(`#${that.tableId} thead tr:eq(1)`).length == 1) {
+          $(`#${that.tableId} thead tr:eq(1)`).remove()
+        }
+        $(`#${that.tableId} thead tr`)
+          .clone(true)
+          .appendTo(`#${that.tableId} thead`)
+        $(`#${that.tableId} thead tr:eq(1) th`).each(function(i) {
+          var title = $(this).text()
+          let numbering = 0
+          for (let ii in that.dtfields) {
+            if (numbering == i) {
+              let field = that.dtfields[ii]
+              if (field.hasOwnProperty('searchable')) {
+                if (field.searchable) {
+                  $(this).html(
+                    '<input class="form-control form-control-sm" type="text" placeholder="' +
+                      title +
+                      '" value="' +
+                      that.dataTable.column(i).search() +
+                      '" />'
+                  )
+                } else {
+                  $(this).html('')
+                }
+              } else {
                 $(this).html(
                   '<input class="form-control form-control-sm" type="text" placeholder="' +
                     title +
@@ -280,32 +290,22 @@ export default {
                     that.dataTable.column(i).search() +
                     '" />'
                 )
-              } else {
-                $(this).html('')
               }
-            } else {
-              $(this).html(
-                '<input class="form-control form-control-sm" type="text" placeholder="' +
-                  title +
-                  '" value="' +
-                  that.dataTable.column(i).search() +
-                  '" />'
-              )
             }
+            numbering++
           }
-          numbering++
-        }
-        $('input', this).on('keyup change', function() {
-          if (that.dataTable.column(i).search() !== this.value) {
-            that.dataTable
-              .column(i)
-              .search(this.value)
-              .draw()
-          }
+          $('input', this).on('keyup change', function() {
+            if (that.dataTable.column(i).search() !== this.value) {
+              that.dataTable
+                .column(i)
+                .search(this.value)
+                .draw()
+            }
+          })
         })
+        that.dataTable.responsive.recalc()
       })
-      that.dataTable.responsive.recalc()
-    })
+    }
     $el.on('click', '[data-action]', e => {
       e.preventDefault()
       e.stopPropagation()
