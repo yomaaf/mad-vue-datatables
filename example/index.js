@@ -275,6 +275,27 @@ __webpack_require__.r(__webpack_exports__);
           sortable: true,
           searchable: true,
           defaultOrder: 'desc'
+        },
+        name7: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name8: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
+        },
+        name9: {
+          label: 'Name',
+          data: 'name',
+          sortable: true,
+          searchable: true,
+          defaultOrder: 'desc'
         }
       }
     };
@@ -449,7 +470,7 @@ __webpack_require__.r(__webpack_exports__);
         dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 
         /*eslint-enable */
-        responsive: true,
+        responsive: false,
         processing: true,
         searching: true,
         searchDelay: 1500,

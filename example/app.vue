@@ -39,7 +39,10 @@ export default {
         name3: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
         name4: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
         name5: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
-        name6: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' }
+        name6: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name7: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name8: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' },
+        name9: { label: 'Name', data:'name', sortable: true, searchable: true, defaultOrder: 'desc' }
       },
     }
   },
