@@ -27,7 +27,7 @@ export default {
     },
     className: {
       type: String,
-      default: 'table table-striped table-bordered nowrap w-100'
+      default: 'table table-striped table-bordered w-100'
     },
     opts: {
       type: Object

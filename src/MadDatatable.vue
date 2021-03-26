@@ -153,6 +153,7 @@ export default {
         searching: true,
         searchDelay: 1500,
         destroy: true,
+        fixedColumns: true,
         orderCellsTop: true,
         ordering: true,
         lengthChange: true,

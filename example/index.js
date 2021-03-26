@@ -475,6 +475,7 @@ __webpack_require__.r(__webpack_exports__);
         searching: true,
         searchDelay: 1500,
         destroy: true,
+        fixedColumns: true,
         orderCellsTop: true,
         ordering: true,
         lengthChange: true,
@@ -598,7 +599,7 @@ var myUniqueId = 1;
     },
     className: {
       type: String,
-      "default": 'table table-striped table-bordered nowrap w-100'
+      "default": 'table table-striped table-bordered w-100'
     },
     opts: {
       type: Object
